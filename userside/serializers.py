@@ -13,7 +13,7 @@ class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
         model = User
-        fields = ("id",'email', 'password', 'first_name', 'last_name','profilePic')
+        fields = ("id",'email', 'password', 'first_name', 'last_name')
 
     def create(self, validated_data):
         user = User.objects.create_user(**validated_data)
@@ -67,3 +67,8 @@ class AboutSerializer(serializers.ModelSerializer):
     class Meta:
         model = About
         fields = '__all__'
+
+class CatagorySeializer(serializers.ModelSerializer):
+    class Meta:
+        model = Catagory
+        fields= '__all__'

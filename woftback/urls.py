@@ -50,13 +50,12 @@ def update_user_profile(request, email):
     
 urlpatterns = [
     
-    # path('login/', views.CustomLoginView.as_view(), name='token_obtain_pair'),
-    # path('logout/', logout, name='logout'),
-
-    # path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('login/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
+    path('logout/', logout, name='logout'),
+    path('api/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('admin/', admin.site.urls),
-    # path("user/<str:email>/profile", update_user_profile),
-    # path('', include("userside.urls")),
+    path("user/<str:email>/profile", update_user_profile),
+    path('', include("userside.urls")),
     ]+  static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
 urlpatterns += static(settings.MEDIA_URL, document_root= settings.MEDIA_ROOT)

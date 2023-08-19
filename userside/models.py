@@ -88,15 +88,25 @@ class About(models.Model):
     def __str__(self):
         return self.company
     
+# class Catagory(models.Model):
+
+#     catagory_name = models.CharField(max_length=100, blank=False, null=False)
+#     image = models.ImageField(upload_to="catagories/", null=True, default='default.jpg' )
+
+#     def __str__(self):
+#         return self.catagory_name
 class Catagory(models.Model):
-
-    catagory_name = models.CharField(max_length=100, blank=False, null=False, unique=True)
-    image = models.ImageField(upload_to="catagories/", null=True, default='default.jpg' )
-
-
-
+    catagory_name= models.CharField(max_length=150,)
+    image= models.ImageField(upload_to="catagories/", default= 'default.jpg')
+    
     def __str__(self):
-        return self.catagory_name
+         return self.catagory_name
+    
+    
+    
+    
+
+   
 
 
 class Product(models.Model):

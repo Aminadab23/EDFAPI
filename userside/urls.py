@@ -3,7 +3,7 @@ from . import views
 
 urlpatterns = [
     path('signup', views.SignupView.as_view(),name='signup'),
-    path('createCatagory/', views.CategoryCreateView.as_view(),name='addProduct'),
+    path('createCatagory/', views.CreateCatagoryGeneric.as_view(),name='addProduct'),
     path('createProduct/', views.ProductCreateView.as_view(),name='addCatagory'),
     path('catagories/', views.CategoryListView.as_view()),
     path('products/', views.ProductListView.as_view()),
@@ -16,7 +16,6 @@ urlpatterns = [
     path('updateAbout/<int:pk>', views.UpdateAboutView.as_view()),
     path("",views.SignUp.as_view()),
     path('getUserId/<str:email>', views.GetUserByEmail.as_view(), name='get-user-by-email'),
-    path('updateProfile/<str:email>', views.UserProfileUpdateView.as_view()),
     
     
 ]

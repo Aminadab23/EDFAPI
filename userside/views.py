@@ -3,7 +3,6 @@ from rest_framework.response import Response
 from rest_framework.views import APIView
 from rest_framework import generics,permissions
 
-from userside.forms import UserCartForm
 
 from .serializers import *
 from .models import *
@@ -36,15 +35,14 @@ class SignupView(generics.CreateAPIView):
     queryset = User.objects.all()
     serializer_class = UserSerializer
     permission_classes = (permissions.AllowAny,)
-
-class ProductCreateView(APIView):
-    def post(self, request, format=None):
-        serializer = ProductSerializer(data=request.data)
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data, status=201)
-        return Response(serializer.errors, status=400)
+class CreateCatagoryGeneric(generics.CreateAPIView):
+    queryset = Catagory.objects.all()
+    serializer_class= CatagorySeializer
     
+
+class ProductCreateView(generics.CreateAPIView):
+    queryset = Product.objects.all()
+    serializer_class= ProductSerializer
 class CategoryCreateView(APIView):
     def post(self, request, format=None):
         serializer = CategorySerializer(data=request.data)
@@ -161,25 +159,3 @@ class UpdateAboutView(generics.UpdateAPIView):
     lookup_field = 'pk'
 
 
-## ------updateProfile-------##
-# class UpdateUserView(generics.UpdateAPIView):
-#     queryset = User.objects.all()
-#     serializer_class = UserSerializer
-#     permission_classes = [permissions.IsAuthenticated]
-
-#     def get_object(self):
-#         return self.request.user
-from rest_framework_simplejwt.tokens import RefreshToken
-from .models import BlacklistedToken
-
-class UserProfileUpdateView(generics.UpdateAPIView):
-    queryset = User.objects.all()
-    serializer_class = UserSerializer  
-    lookup_field = 'email'
-
-    def get_object(self):
-        return self.request.user
-    
-    
-    
-    
